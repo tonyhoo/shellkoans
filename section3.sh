@@ -9,7 +9,7 @@ TOTAL_ALLOWED_EXERCISE=3
 # does indeed exit with a 0 exit status.
 function e1(){
 	echo "This script will exit with a 0 exit status."
-	exit 0
+	return 0
 }
 
 # Exercise 2:
@@ -18,10 +18,10 @@ function e1(){
 # If it is a directory, exit with a 1 exit status. If it is some other type of file, exit with a 2 exit status.
 function e2(){
 	read -p "Please pass in the file/directory name: " NAME
-	[ -f "$NAME" ] && echo "This is regular file. Exit successfully" &&exit 0
-	[ -d "$NAME" ] && echo "This is directory file. Exit with error code 1" &&exit 1
-	[ -e "$NAME" ] && echo "This is other file type. Exit with error code 2" &&exit 2
-	echo "The file doesn't exist" && exit 3
+	[ -f "$NAME" ] && echo "This is regular file. Exit successfully" &&return 0
+	[ -d "$NAME" ] && echo "This is directory file. Exit with error code 1" &&return 1
+	[ -e "$NAME" ] && echo "This is other file type. Exit with error code 2" &&return 2
+	echo "The file doesn't exist" && return 3
 }
 
 # Exercise 3:
@@ -31,8 +31,8 @@ function e2(){
 function e3(){
 	cat /etc/shadow
 	RETURN_CODE="$?"
-	[ ${RETURN_CODE} -eq 0 ] && echo "Command succeeded" && exit 0
-	[ ${RETURN_CODE} -ne 0 ] && echo "Command failed" && exit 1
+	[ ${RETURN_CODE} -eq 0 ] && echo "Command succeeded" && return 0
+	[ ${RETURN_CODE} -ne 0 ] && echo "Command failed" && return 1
 }
 
 function run() {
